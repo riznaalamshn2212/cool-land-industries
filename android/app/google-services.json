@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "555006136166",
+    "project_id": "cool-land-industries",
+    "storage_bucket": "cool-land-industries.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555006136166:android:69a8bc6911f4e78dd102a7",
+        "android_client_info": {
+          "package_name": "com.coollandmarketing.cool_land_marketing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3FOhesaxK8VooeOz4IPOR_v6oK1AYL1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
