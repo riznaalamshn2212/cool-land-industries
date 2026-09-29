@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>Cool Land Industries</title>
+
+  <style>
+    :root {
+      --navy: #102d5b;
+      --navy-2: #173b76;
+      --blue: #0868f4;
+      --blue-2: #2e83ff;
+      --gold: #c89532;
+      --gold-light: #f0d27a;
+      --text: #12356d;
+      --muted: #7185a5;
+      --line: rgba(35, 68, 112, 0.13);
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-height: 100%;
+      background: #f6f9ff;
+    }
+
+    body {
+      min-height: 100svh;
+      width: 100%;
+      overflow-x: hidden;
+
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(209, 225, 255, 0.68),
+          transparent 42%
+        ),
+        linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f8fbff 52%,
+          #edf4ff 100%
+        );
+
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* --------------------------------------------------
+       Decorative background
+    -------------------------------------------------- */
+
+    .top-shape {
+      position: fixed;
+      z-index: -2;
+
+      width: min(48vw, 650px);
+      height: min(34vw, 430px);
+
+      min-width: 330px;
+      min-height: 220px;
+
+      top: -245px;
+      left: -145px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #0e2b59 0%,
+          #183e79 100%
+        );
+
+      border-radius: 0 0 75% 0;
+
+      pointer-events: none;
+    }
+
+    .top-shape::after {
+      content: "";
+
+      position: absolute;
+
+      right: -1px;
+      bottom: -2px;
+
+      width: 74%;
+      height: 4px;
+
+      border-radius: 999px;
+
+      background: linear-gradient(
+        90deg,
+        var(--gold),
+        var(--gold-light)
+      );
+
+      transform: rotate(-7deg);
+      transform-origin: right center;
+    }
+
+    .bottom-shape {
+      position: fixed;
+      z-index: -2;
+
+      width: min(50vw, 680px);
+      height: min(35vw, 450px);
+
+      min-width: 340px;
+      min-height: 230px;
+
+      right: -170px;
+      bottom: -255px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #183e79 0%,
+          #0e2b59 100%
+        );
+
+      border-radius: 75% 0 0 0;
+
+      pointer-events: none;
+    }
+
+    .bottom-shape::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: -1px;
+
+      width: 76%;
+      height: 4px;
+
+      border-radius: 999px;
+
+      background: linear-gradient(
+        90deg,
+        var(--gold-light),
+        var(--gold)
+      );
+
+      transform: rotate(-7deg);
+      transform-origin: left center;
+    }
+
+    .cli-watermark {
+      position: fixed;
+      z-index: -1;
+
+      top: 12%;
+      right: -25px;
+
+      font-size: clamp(120px, 18vw, 280px);
+      line-height: 0.8;
+
+      font-weight: 900;
+      letter-spacing: -18px;
+
+      color: rgba(42, 79, 140, 0.045);
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* --------------------------------------------------
+       Main layout
+    -------------------------------------------------- */
+
+    .page {
+      width: min(92%, 760px);
+      min-height: 100svh;
+
+      margin: 0 auto;
+
+      padding:
+        clamp(44px, 7vh, 78px)
+        clamp(15px, 4vw, 36px)
+        clamp(28px, 5vh, 52px);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .quality-text {
+      position: absolute;
+
+      top: clamp(18px, 3vh, 32px);
+      left: clamp(18px, 5vw, 66px);
+
+      color: rgba(255, 255, 255, 0.95);
+
+      font-size: clamp(8px, 1.1vw, 12px);
+      font-weight: 700;
+
+      letter-spacing: clamp(1.2px, 0.5vw, 2.8px);
+
+      white-space: nowrap;
+    }
+
+    /* --------------------------------------------------
+       Logo
+    -------------------------------------------------- */
+
+    .logo-frame {
+      width: clamp(112px, 15vw, 164px);
+      aspect-ratio: 1;
+
+      padding: clamp(7px, 1vw, 10px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(255, 255, 255, 0.94);
+
+      border-radius: clamp(28px, 4vw, 44px);
+
+      box-shadow:
+        0 20px 50px rgba(15, 45, 88, 0.14),
+        0 0 0 1px rgba(200, 149, 50, 0.14);
+
+      margin-bottom: clamp(18px, 3vh, 28px);
+    }
+
+    .logo-frame img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      border-radius: clamp(22px, 3vw, 34px);
+    }
+
+    /* --------------------------------------------------
+       Branding
+    -------------------------------------------------- */
+
+    .brand-title {
+      color: var(--text);
+
+      font-size: clamp(31px, 7vw, 58px);
+      line-height: 0.98;
+
+      font-weight: 900;
+      letter-spacing: clamp(0.8px, 0.25vw, 2px);
+    }
+
+    .brand-subtitle {
+      display: block;
+
+      margin-top: clamp(6px, 1vw, 11px);
+
+      color: var(--gold);
+
+      font-size: clamp(19px, 3.8vw, 31px);
+      line-height: 1;
+
+      font-weight: 800;
+
+      letter-spacing: clamp(4px, 0.9vw, 9px);
+    }
+
+    .tagline {
+      margin-top: clamp(13px, 2vh, 20px);
+
+      color: var(--muted);
+
+      font-size: clamp(14px, 2vw, 19px);
+      line-height: 1.35;
+
+      letter-spacing: 0.2px;
+    }
+
+    .accent-line {
+      width: clamp(58px, 8vw, 84px);
+      height: 3px;
+
+      margin:
+        clamp(17px, 2.6vh, 25px)
+        auto
+        clamp(22px, 3vh, 31px);
+
+      border-radius: 999px;
+
+      background: linear-gradient(
+        90deg,
+        var(--gold),
+        var(--gold-light)
+      );
+    }
+
+    /* --------------------------------------------------
+       Install button
+    -------------------------------------------------- */
+
+    .install-button {
+      width: min(100%, 440px);
+      min-height: clamp(56px, 8vw, 70px);
+
+      padding: 0 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: clamp(9px, 2vw, 18px);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue) 0%,
+          var(--blue-2) 100%
+        );
+
+      color: #ffffff;
+      text-decoration: none;
+
+      border-radius: clamp(17px, 3vw, 25px);
+
+      font-size: clamp(17px, 3vw, 21px);
+      font-weight: 800;
+      letter-spacing: 0.4px;
+
+      box-shadow:
+        0 18px 42px rgba(8, 104, 244, 0.27),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .install-button:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 24px 50px rgba(8, 104, 244, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .install-icon,
+    .install-arrow {
+      font-size: clamp(21px, 4vw, 28px);
+      line-height: 1;
+    }
+
+    .official {
+      margin-top: 13px;
+
+      color: #7990af;
+
+      font-size: clamp(9px, 1.4vw, 13px);
+      font-weight: 700;
+
+      letter-spacing: clamp(1px, 0.35vw, 2px);
+    }
+
+    /* --------------------------------------------------
+       Feature strip
+    -------------------------------------------------- */
+
+    .features {
+      width: min(100%, 520px);
+
+      margin-top: clamp(25px, 4vh, 39px);
+
+      padding: clamp(15px, 2.5vw, 22px) 0;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .feature {
+      padding: 0 clamp(5px, 1.5vw, 15px);
+    }
+
+    .feature + .feature {
+      border-left: 1px solid var(--line);
+    }
+
+    .feature-icon {
+      color: var(--gold);
+
+      font-size: clamp(18px, 3vw, 25px);
+      line-height: 1;
+
+      margin-bottom: 7px;
+    }
+
+    .feature-title {
+      color: #244477;
+
+      font-size: clamp(10px, 1.8vw, 14px);
+      line-height: 1.2;
+
+      font-weight: 800;
+    }
+
+    .feature-text {
+      margin-top: 4px;
+
+      color: #8391a8;
+
+      font-size: clamp(8px, 1.4vw, 11px);
+      line-height: 1.2;
+    }
+
+    /* --------------------------------------------------
+       Footer
+    -------------------------------------------------- */
+
+    .copyright {
+      margin-top: clamp(22px, 4vh, 35px);
+
+      color: #8291aa;
+
+      font-size: clamp(10px, 1.5vw, 13px);
+    }
+
+    /* --------------------------------------------------
+       Mobile
+    -------------------------------------------------- */
+
+    @media (max-width: 420px) {
+      .page {
+        width: 94%;
+      }
+
+      .quality-text {
+        left: 17px;
+        letter-spacing: 1.2px;
+      }
+
+      .cli-watermark {
+        top: 104px;
+        right: -18px;
+
+        font-size: 136px;
+        letter-spacing: -10px;
+      }
+
+      .logo-frame {
+        width: 116px;
+      }
+
+      .brand-title {
+        font-size: 31px;
+      }
+
+      .brand-subtitle {
+        font-size: 19px;
+        letter-spacing: 5px;
+      }
+
+      .tagline {
+        max-width: 300px;
+      }
+
+      .install-button {
+        width: min(100%, 330px);
+      }
+
+      .features {
+        width: min(100%, 350px);
+      }
+
+      .feature-title {
+        font-size: 10px;
+      }
+
+      .feature-text {
+        font-size: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="top-shape"></div>
+  <div class="bottom-shape"></div>
+
+  <!-- SUBTLE WATERMARK -->
+  <div class="cli-watermark">CLI</div>
+
+  <main class="page">
+
+    <!-- TOP BRAND LINE -->
+    <div class="quality-text">
+      QUALITY &nbsp; • &nbsp; COMFORT &nbsp; • &nbsp; TRUST
+    </div>
+
+    <!-- APP ICON -->
+    <div class="logo-frame">
+      <img
+        src="app_icon.png"
+        alt="Cool Land Industries"
+      />
+    </div>
+
+    <!-- BRAND -->
+    <h1 class="brand-title">
+      COOL LAND
+    </h1>
+
+    <span class="brand-subtitle">
+      INDUSTRIES
+    </span>
+
+    <!-- TAGLINE -->
+    <p class="tagline">
+      Your Trusted Home Appliances Partner
+    </p>
+
+    <div class="accent-line"></div>
+
+    <!-- INSTALL -->
+    <a
+      class="install-button"
+      href="https://github.com/riznaalamshn2212/cool-land-industries/releases/download/v1.0.0/app-release.apk"
+    >
+      <span class="install-icon">↓</span>
+      <span>INSTALL APP</span>
+      <span class="install-arrow">→</span>
+    </a>
+
+    <div class="official">
+      OFFICIAL ANDROID APP
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features">
+
+      <div class="feature">
+        <div class="feature-icon">✓</div>
+        <div class="feature-title">
+          Safe &amp; Secure
+        </div>
+        <div class="feature-text">
+          Official App
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">ϟ</div>
+        <div class="feature-title">
+          Fast &amp; Simple
+        </div>
+        <div class="feature-text">
+          Easy Installation
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">▣</div>
+        <div class="feature-title">
+          Official App
+        </div>
+        <div class="feature-text">
+          Android Ready
+        </div>
+      </div>
+
+    </section>
+
+    <div class="copyright">
+      © Cool Land Industries
+    </div>
+
+  </main>
+
+</body>
+</html>
